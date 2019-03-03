@@ -7,9 +7,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -37,6 +40,7 @@ public class ChatClient {
     JTextField textField = new JTextField(40);
     JTextArea messageArea = new JTextArea(8, 40);
     // TODO: Add a list box
+    JList list ;
 
     /**
      * Constructs the client by laying out the GUI and registering a
@@ -47,12 +51,17 @@ public class ChatClient {
      * message from the server.
      */
     public ChatClient() {
+    	
+    	//String array to store weekdays 
+        String week[]= { "Monday","Tuesday","Wednesday", 
+                         "Thursday","Friday","Saturday","Sunday"};
 
         // Layout GUI
         textField.setEditable(false);
         messageArea.setEditable(false);
         frame.getContentPane().add(textField, "North");
-        frame.getContentPane().add(new JScrollPane(messageArea), "Center");
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, frame.getContentPane().add(new JList(week)), frame.getContentPane().add(new JScrollPane(messageArea)));
+        frame.getContentPane().add(splitPane);
         frame.pack();
 
         // TODO: You may have to edit this event handler to handle point to point messaging,
@@ -66,7 +75,6 @@ public class ChatClient {
              */
             public void actionPerformed(ActionEvent e) {
                 out.println(textField.getText());
-                textField.setText("");
             }
         });
         

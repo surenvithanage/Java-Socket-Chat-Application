@@ -138,6 +138,7 @@ public class ChatServer {
 					}
 
 					// TODO: Add code to send a message to a specific client and not
+					
 					// all clients. You may have to use a HashMap to store the sockets along
 					// with the chat client names
 					if (input.contains(">>")) {
